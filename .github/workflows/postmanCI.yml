@@ -15,11 +15,11 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
 
-      - name: Run API tests and export report
+      - name: Run API tests and save output
         run: |
           postman collection run "20426689-a7998ddd-3ed5-4fcd-a943-6456f6839ea4" \
           -e "20426689-1d45950f-3b01-40f2-b99d-65065c36d475" \
-          --reporters cli,json --reporter-json-export results.json
+          --output-file results.json
 
       - name: Upload test results
         uses: actions/upload-artifact@v3
